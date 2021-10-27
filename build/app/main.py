@@ -8,10 +8,10 @@ import pyotp
 from models import piyot as piyot_model
 
 application = Flask(__name__, template_folder="templates")
-db = SQLAlchemy(application)
-
 application.config["SQLALCHEMY_DATABASE_URI"] = env.get("PIYOT_DB_URI", "sqlite:///application.db")
-application.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(application)
 
 REQUEST_TIME = Summary("piyot_request_processing_time", "Time spent processing request")
 
@@ -66,7 +66,7 @@ def req_handler(path):
                 return send_file(user.get_qr_code(), mimetype='image/png')
             return make_response(json_resp(user))
         return make_response('405 Method Not Allowed', 405)
-    except (AttributeError, ValueError, IOError, RuntimeError, SyntaxError) as exp:
+    except (AttributeError, ValueError, IOError, RuntimeError, SyntaxError, psycopg2.OperationalError) as exp:
         print("Error in req_handler() " + str(exp))
         return make_response('400 Bad Request', 400)
 
