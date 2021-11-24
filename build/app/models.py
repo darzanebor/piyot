@@ -1,35 +1,31 @@
 #!/usr/bin/env python3
-""" models """
-from dataclasses import dataclass
-from io import BytesIO
+""" user model """
 from flask_sqlalchemy import SQLAlchemy
+from dataclasses import dataclass
+from decimal import Decimal
+from io import BytesIO
 import qrcode
 
 db = SQLAlchemy()
 
 @dataclass
 class piyot(db.Model):
-    """ user model """
     __tablename__ = "piyot"
     user_id: str
     user_name: str
     otp_secret: str
 
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.BigInteger, index=False, unique=True, nullable=False)
-    user_name = db.Column(db.String, index=False, unique=True, nullable=False)
+    id          = db.Column(db.Integer,    primary_key=True)
+    user_id     = db.Column(db.BigInteger, index=False, unique=True, nullable=False)
+    user_name   = db.Column(db.String,     index=False, unique=True, nullable=False)
     create_date = db.Column(db.BigInteger, index=False, unique=False, nullable=True)
-    otp_secret = db.Column(db.String, index=False, unique=True, nullable=False)
+    otp_secret  = db.Column(db.String,     index=False, unique=True, nullable=False)
 
     def get_qr_code(self):
         """ generate otp qr code """
         qr_code = BytesIO()
-        image = qrcode.make(
-            "otpauth://totp/Piyot Auth Service:"
-            + self.user_name + "@" + str(self.user_id)
-            + "?secret=" + self.otp_secret
-        )
-        image.save(qr_code, "PNG")
+        image = qrcode.make('otpauth://totp/Piyot Auth Service:' + self.user_name + '@' + str(self.user_id) + '?secret=' + self.otp_secret)
+        image.save(qr_code, 'PNG')
         qr_code.seek(0)
         return qr_code
 
