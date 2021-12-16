@@ -4,7 +4,7 @@ dataclasses
 qrcode
 gunicorn>=20
 requests
-json_log_formatter
+python-json-logger
 prometheus_client
 pyotp
 psycopg2
