@@ -66,7 +66,7 @@ http://localhost:5000/ip?username=${USERNAME}&type=image
 
 Get User Data (Json):
 ```
-http://localhost:5000/ip?username=${USERNAME}&type=raw
+http://localhost:5000/ip?username=${USERNAME}
 ```
 
 <p><img src="./img/user.png" title="user"></a>
