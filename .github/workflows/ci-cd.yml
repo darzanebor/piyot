@@ -46,7 +46,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           context: "{{defaultContext}}:build"
 
-#      - name: Check Helm Repo
+#      - name: Update Argo App
 #        uses: actions/checkout@master
 #        with:
 #          repository: orgname/reponame
