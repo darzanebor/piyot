@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - 'feature/*'
+  pull_request: {}
+#    types: [opened, reopened]
 
 jobs:
   docker:
