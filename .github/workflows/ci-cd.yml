@@ -50,7 +50,7 @@ jobs:
 #
       - name: Update deployment file
         run: |
-          TAG=sed -i 's|<IMAGE>|${{ steps.meta.outputs.tags }}|' $GITHUB_WORKSPACE/argo-app/application.yaml
+          sed -i 's|<IMAGE>|${{ steps.meta.outputs.tags }}|' $GITHUB_WORKSPACE/argo-app/application.yaml
           git config --local user.name "github-actions"
           git add $GITHUB_WORKSPACE/argo-app/application.yaml
           git commit -m "Auto update at $(date +%Y-%m-%d-%H-%m)"
