@@ -25,6 +25,8 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=sha,prefix=
+            type=semver,pattern={{version}},prefix=
+            type=semver,pattern={{major}}.{{minor}}.{{patch}},prefix=
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -45,9 +47,7 @@ jobs:
           push: false
           tags: ${{ steps.meta.outputs.tags }}
           context: "{{defaultContext}}:build"
-
-#      - name: Update Argo App
-#        uses: actions/checkout@master
-#        with:
-#          repository: orgname/reponame
-#          token: ${{ secrets.my_pat }}
+#
+#      - name: Update deployment file
+#         run: TAG=sed -i 's|<IMAGE>|${{ steps.meta.outputs.tags }}|' $GITHUB_WORKSPACE/helm/values_dev.yml
+#
