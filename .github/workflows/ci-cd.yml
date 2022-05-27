@@ -48,6 +48,12 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           context: "{{defaultContext}}:build"
 #
-#      - name: Update deployment file
-#         run: TAG=sed -i 's|<IMAGE>|${{ steps.meta.outputs.tags }}|' $GITHUB_WORKSPACE/helm/values_dev.yml
-#
+      - name: Update deployment file
+        run: |
+           echo 0
+#          TAG=sed -i 's|<IMAGE>|${{ steps.meta.outputs.tags }}|' $GITHUB_WORKSPACE/helm/values_dev.yml
+#          git config --local user.name "github-actions"
+#          git add $GITHUB_WORKSPACE/helm/values_dev.yml
+#          git commit -m "Auto update at $(date +%Y-%m-%d-%H-%m)"
+#          git push
+
