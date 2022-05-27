@@ -47,7 +47,7 @@ jobs:
           push: false
           tags: ${{ steps.meta.outputs.tags }}
           context: "{{defaultContext}}:build"
-#
+
       - name: Update deployment file
         run: |
           echo 0
