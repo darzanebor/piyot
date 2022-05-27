@@ -13,7 +13,7 @@ spec:
     helm:
       parameters:
         - name: image.name
-          value: <IMAGE>
+          value: ghcr.io/darzanebor/piyot:1d9b1d6
         - name: image.tag
           value: IMAGE_TAG
     chart: default
