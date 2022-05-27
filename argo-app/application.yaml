@@ -13,7 +13,7 @@ spec:
     helm:
       parameters:
         - name: image.name
-          value: IMAGE_NAME
+          value: <IMAGE>
         - name: image.tag
           value: IMAGE_TAG
     chart: default
