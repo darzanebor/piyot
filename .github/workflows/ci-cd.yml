@@ -49,8 +49,9 @@ jobs:
           context: "{{defaultContext}}:build"
 
 #      - uses: imranismail/setup-kustomize@v1
-#      - run: |          
-#          kustomize edit set image ${{ steps.meta.outputs.tags }} --kind Deployment --path $GITHUB_WORKSPACE/manifests/dev/deployment.yaml
+#      - run: |
+#          git clone https://${{ secrets.pat }}@github.com/darzanebor/${{ github.event.repository.name }}-argo.git .
+#          kustomize edit set image ${{ steps.meta.outputs.tags }} --kind Deployment --path $GITHUB_WORKSPACE/${{ github.event.repository.name }}-argo/dev/deployment.yaml
 #          git add $GITHUB_WORKSPACE/manifests/dev/deployment.yaml
 #          git commit -m "Set `app` image tag to `${GITHUB_SHA}`"
 #          git push
