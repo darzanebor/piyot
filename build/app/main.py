@@ -13,7 +13,7 @@ application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(application)
 
-REQUEST_TIME = Summary("piyot_request_processing_time", "Time spent processing request")
+REQUEST_TIME = Summary("svc_request_processing_time", "Time spent processing request")
 
 def child_exit(server, worker):
     """ multiprocess function for prometheus to track gunicorn """
